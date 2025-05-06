@@ -1,24 +1,28 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  
   useEffect(() => {
     // Check if user is admin
     const adminAuth = localStorage.getItem("adminAuthenticated");
     setIsAdmin(adminAuth === "true");
   }, []);
-  return <nav className="bg-white shadow-md sticky top-0 z-50">
+  
+  return (
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-badawi-blue">معرض ال 
-بدوي للمراتب</span>
+              <span className="text-2xl font-bold text-badawi-blue">معرض البدوي للمراتب</span>
             </Link>
           </div>
           
@@ -38,20 +42,24 @@ const Navbar = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                {isAdmin ? <>
+                {isAdmin ? (
+                  <>
                     <DropdownMenuItem onClick={() => navigate("/admin")}>
                       لوحة الإدارة
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => {
-                  localStorage.removeItem("adminAuthenticated");
-                  setIsAdmin(false);
-                  navigate("/");
-                }}>
+                      localStorage.removeItem("adminAuthenticated");
+                      setIsAdmin(false);
+                      navigate("/");
+                    }}>
                       تسجيل الخروج
                     </DropdownMenuItem>
-                  </> : <DropdownMenuItem onClick={() => navigate("/admin/login")}>
+                  </>
+                ) : (
+                  <DropdownMenuItem onClick={() => navigate("/admin/login")}>
                     تسجيل الدخول كمدير
-                  </DropdownMenuItem>}
+                  </DropdownMenuItem>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
             
@@ -65,7 +73,8 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Menu */}
-      {isMobileMenuOpen && <div className="md:hidden bg-white">
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/" className="text-gray-700 hover:text-badawi-blue block px-3 py-2 text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
               الرئيسية
@@ -79,8 +88,14 @@ const Navbar = () => {
             <Link to="/contact" className="text-gray-700 hover:text-badawi-blue block px-3 py-2 text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
               تواصل معنا
             </Link>
+            <Link to={isAdmin ? "/admin" : "/admin/login"} className="text-gray-700 hover:text-badawi-blue block px-3 py-2 text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+              {isAdmin ? "لوحة الإدارة" : "تسجيل الدخول كمدير"}
+            </Link>
           </div>
-        </div>}
-    </nav>;
+        </div>
+      )}
+    </nav>
+  );
 };
+
 export default Navbar;

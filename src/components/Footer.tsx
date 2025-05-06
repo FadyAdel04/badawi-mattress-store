@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { MapPin, Phone, Clock } from "lucide-react";
 
 const Footer = () => {
@@ -26,20 +27,21 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">روابط سريعة</h3>
             <ul className="space-y-2">
-              <li><a href="/" className="hover:text-badawi-gold transition-colors">الرئيسية</a></li>
-              <li><a href="/about" className="hover:text-badawi-gold transition-colors">من نحن</a></li>
-              <li><a href="/products" className="hover:text-badawi-gold transition-colors">منتجاتنا</a></li>
-              <li><a href="/contact" className="hover:text-badawi-gold transition-colors">تواصل معنا</a></li>
+              <li><Link to="/" className="hover:text-badawi-gold transition-colors">الرئيسية</Link></li>
+              <li><Link to="/about" className="hover:text-badawi-gold transition-colors">من نحن</Link></li>
+              <li><Link to="/products" className="hover:text-badawi-gold transition-colors">منتجاتنا</Link></li>
+              <li><Link to="/contact" className="hover:text-badawi-gold transition-colors">تواصل معنا</Link></li>
+              <li><Link to="/admin" className="hover:text-badawi-gold transition-colors">لوحة الإدارة</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-xl font-bold mb-4">فئات المنتجات</h3>
             <ul className="space-y-2">
-              <li><a href="/products?category=medical" className="hover:text-badawi-gold transition-colors">مراتب طبية</a></li>
-              <li><a href="/products?category=spring" className="hover:text-badawi-gold transition-colors">مراتب سوست</a></li>
-              <li><a href="/products?category=furniture" className="hover:text-badawi-gold transition-colors">مفروشات</a></li>
-              <li><a href="/products?category=custom" className="hover:text-badawi-gold transition-colors">مقاسات خاصة</a></li>
+              <li><Link to="/products?category=مراتب طبية" className="hover:text-badawi-gold transition-colors">مراتب طبية</Link></li>
+              <li><Link to="/products?category=مراتب سوست" className="hover:text-badawi-gold transition-colors">مراتب سوست</Link></li>
+              <li><Link to="/products?category=مفروشات" className="hover:text-badawi-gold transition-colors">مفروشات</Link></li>
+              <li><Link to="/products?category=مقاسات خاصة" className="hover:text-badawi-gold transition-colors">مقاسات خاصة</Link></li>
             </ul>
           </div>
         </div>
