@@ -13,8 +13,6 @@ import {
   TableRow 
 } from "@/components/ui/table";
 import { Pencil, Trash2, Plus } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 interface Product {
   id: string;
@@ -97,9 +95,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
-      
+    <div className="min-h-screen bg-gray-50">
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
@@ -111,7 +107,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <div className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">إدارة المنتجات</h2>
           <Button 
@@ -182,8 +178,6 @@ const AdminDashboard = () => {
           </div>
         )}
       </div>
-      
-      <Footer />
     </div>
   );
 };
