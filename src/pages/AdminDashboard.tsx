@@ -63,6 +63,9 @@ const AdminDashboard = () => {
       description: "تم تسجيل خروجك من لوحة التحكم بنجاح",
     });
   };
+  const handlehome = () => {
+    navigate("/");
+  };
 
   const handleDeleteProduct = async (id: string) => {
     if (!window.confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
@@ -100,6 +103,9 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold">لوحة تحكم الإدارة</h1>
+            <Button onClick={handlehome} variant="outline">
+              الصفحة الرئيسية
+            </Button>
             <Button onClick={handleLogout} variant="outline">
               تسجيل الخروج
             </Button>

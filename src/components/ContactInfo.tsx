@@ -21,7 +21,7 @@ const ContactInfo = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">العنوان</h3>
               <p className="text-gray-600">
-                أبو حماد – السوق العربي – بجوار الشناوي للملابس
+                اسيوط المعلمين القديمة ش العطيفى بجوار مستشفى العطيفى التخصصى
               </p>
             </CardContent>
           </Card>
@@ -33,7 +33,7 @@ const ContactInfo = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">رقم الهاتف</h3>
               <p className="text-gray-600">
-                01063352583
+                01015386379
               </p>
               <p className="text-gray-600 mt-2">
                 اتصل بنا لأي استفسار أو لحجز طلبك
@@ -48,7 +48,8 @@ const ContactInfo = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">مواعيد العمل</h3>
               <p className="text-gray-600">
-                يومياً من 9 ص حتى 11 م
+                يومياً من 9 ص حتى 11 م   <br ></br>ماعدا 
+                الجمعه من 5 م حتى 12 م
               </p>
               <p className="text-gray-600 mt-2">
                 نعمل طوال أيام الأسبوع لخدمتكم

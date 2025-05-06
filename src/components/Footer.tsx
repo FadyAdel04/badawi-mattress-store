@@ -11,15 +11,16 @@ const Footer = () => {
             <p className="mb-4">متخصصون في المراتب الطبية والمفروشات منذ عام 2015</p>
             <div className="flex items-center space-x-4 space-x-reverse mb-2">
               <MapPin className="h-5 w-5" />
-              <span>أبو حماد – السوق العربي – بجوار الشناوي للملابس</span>
+              <span> اسيوط المعلمين القديمة ش العطيفى بجوار مستشفى العطيفى التخصصى</span>
             </div>
             <div className="flex items-center space-x-4 space-x-reverse mb-2">
               <Phone className="h-5 w-5" />
-              <span>01063352583</span>
+              <span>01015386379</span>
             </div>
             <div className="flex items-center space-x-4 space-x-reverse">
               <Clock className="h-5 w-5" />
-              <span>يومياً من 9 ص حتى 11 م</span>
+              <span> يومياً من 9 ص حتى 11 م   <br ></br>ماعدا 
+              الجمعه من 5 م حتى 12 م</span>
             </div>
           </div>
           

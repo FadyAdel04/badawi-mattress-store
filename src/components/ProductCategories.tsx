@@ -1,6 +1,11 @@
 
 import { Link } from "react-router-dom";
 
+import category1 from "../image/category1.jpeg";
+import category2 from "../image/category2.jpeg";
+import category3 from "../image/category3.jpeg";
+import category4 from "../image/category4.jpeg";
+
 interface Category {
   id: string;
   name: string;
@@ -13,26 +18,26 @@ const categories: Category[] = [
     id: "medical",
     name: "مراتب طبية",
     description: "مراتب طبية عالية الجودة لراحة أفضل وصحة أفضل",
-    imageUrl: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    imageUrl: category1
   },
   {
     id: "spring",
     name: "مراتب سوست",
     description: "مراتب سوست متينة بأنواع مختلفة وأحجام متعددة",
-    imageUrl: "https://images.unsplash.com/photo-1600075110701-6ea93b9b5f70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    imageUrl: category2
   },
   {
     id: "furniture",
     name: "مفروشات",
     description: "تشكيلة متنوعة من المفروشات عالية الجودة",
-    imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    imageUrl: category3
   },
   {
     id: "custom",
     name: "مقاسات خاصة",
     description: "إمكانية تنفيذ مقاسات خاصة حسب الطلب",
-    imageUrl: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-  }
+    imageUrl: category4
+  },
 ];
 
 const ProductCategories = () => {
@@ -50,7 +55,7 @@ const ProductCategories = () => {
           {categories.map((category) => (
             <Link 
               key={category.id} 
-              to={`/products?category=${category.id}`}
+              to={'/products'}
               className="group"
             >
               <div className="relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl">
