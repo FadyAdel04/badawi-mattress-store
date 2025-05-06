@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -103,12 +102,14 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold">لوحة تحكم الإدارة</h1>
-            <Button onClick={handlehome} variant="outline">
-              الصفحة الرئيسية
-            </Button>
-            <Button onClick={handleLogout} variant="outline">
-              تسجيل الخروج
-            </Button>
+            <div className="flex space-x-2">
+              <Button onClick={handlehome} variant="outline">
+                الصفحة الرئيسية
+              </Button>
+              <Button onClick={handleLogout} variant="outline">
+                تسجيل الخروج
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -142,23 +143,23 @@ const AdminDashboard = () => {
                 </Button>
               </div>
             ) : (
-              <Table>
+              <Table className="min-w-full">
                 <TableHeader>
                   <TableRow>
-                    <TableHead>اسم المنتج</TableHead>
-                    <TableHead>الفئة</TableHead>
-                    <TableHead>السعر</TableHead>
-                    <TableHead>الإجراءات</TableHead>
+                    <TableHead className="w-2/5 px-4 py-3 text-right">اسم المنتج</TableHead>
+                    <TableHead className="w-1/5 px-4 py-3 text-right">الفئة</TableHead>
+                    <TableHead className="w-1/5 px-4 py-3 text-right">السعر</TableHead>
+                    <TableHead className="w-1/5 px-4 py-3 text-right">الإجراءات</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {products.map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell className="font-medium">{product.name}</TableCell>
-                      <TableCell>{product.category}</TableCell>
-                      <TableCell>{product.price} جنيه</TableCell>
-                      <TableCell>
-                        <div className="flex space-x-2">
+                    <TableRow key={product.id} className="hover:bg-gray-50">
+                      <TableCell className="font-medium px-4 py-3 text-right">{product.name}</TableCell>
+                      <TableCell className="px-4 py-3 text-right">{product.category}</TableCell>
+                      <TableCell className="px-4 py-3 text-right">{product.price} جنيه</TableCell>
+                      <TableCell className="px-4 py-3 text-right">
+                        <div className="flex justify-start space-x-2 ">
                           <Button
                             variant="outline"
                             size="sm"

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -43,7 +42,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const categoryParam = searchParams.get("category");
-    if (categoryParam) {
+    if (categoryParam && categoryMap[categoryParam]) {
       setCurrentCategory(categoryParam);
     }
     
@@ -61,16 +60,16 @@ const ProductsPage = () => {
       if (productsError) throw productsError;
 
       const categoryParam = searchParams.get("category");
-      let filteredProducts = productsData;
+      let filteredProducts = productsData || [];
       
       // Filter by category if specified
       if (categoryParam && categoryMap[categoryParam]) {
-        filteredProducts = productsData.filter(
+        filteredProducts = filteredProducts.filter(
           (p) => p.category === categoryMap[categoryParam]
         );
       }
 
-      // Fetch product sizes for each product
+      // Fetch product sizes and images for each product
       const productsWithSizes = await Promise.all(
         filteredProducts.map(async (product) => {
           const { data: sizesData, error: sizesError } = await supabase
@@ -92,7 +91,7 @@ const ProductsPage = () => {
 
           return {
             ...product,
-            sizes: sizesData.map((s: any) => s.size),
+            sizes: sizesData?.map((s: any) => s.size) || [],
             imageUrl: imagesData && imagesData.length > 0 
               ? imagesData[0].image_url 
               : "https://images.unsplash.com/photo-1631049552240-59c37f38802b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -118,9 +117,16 @@ const ProductsPage = () => {
 
   const displayedProducts = currentCategory === "all" 
     ? products 
-    : products.filter(product => reverseCategoryMap[product.category] === currentCategory);
+    : products.filter(product => product.category === categoryMap[currentCategory]);
 
   const categories = ["all", "medical", "spring", "furniture", "custom"];
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+201015386379";
+    const message = "مرحباً، أنا مهتم بالاستفسار عن المراتب والمقاسات الخاصة لديكم";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -141,11 +147,11 @@ const ProductsPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
               <Tabs 
-                defaultValue={currentCategory} 
+                value={currentCategory}
                 onValueChange={handleCategoryChange}
                 className="w-full"
               >
-                <TabsList className="mb-6 flex flex-wrap justify-center">
+                <TabsList className="mb-6 flex flex-wrap justify-center gap-2">
                   <TabsTrigger value="all">الكل</TabsTrigger>
                   <TabsTrigger value="medical">مراتب طبية</TabsTrigger>
                   <TabsTrigger value="spring">مراتب سوست</TabsTrigger>
@@ -175,15 +181,17 @@ const ProductsPage = () => {
                     
                     {categories.slice(1).map((category) => (
                       <TabsContent key={category} value={category} className="mt-0">
-                        {displayedProducts.length === 0 ? (
+                        {displayedProducts.filter(p => p.category === categoryMap[category]).length === 0 ? (
                           <div className="text-center py-20">
                             <p className="text-xl">لا توجد منتجات في هذه الفئة</p>
                           </div>
                         ) : (
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {displayedProducts.map((product) => (
-                              <ProductCard key={product.id} product={product} />
-                            ))}
+                            {displayedProducts
+                              .filter(p => p.category === categoryMap[category])
+                              .map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                              ))}
                           </div>
                         )}
                       </TabsContent>
@@ -199,8 +207,11 @@ const ProductsPage = () => {
                 <p className="mb-4">
                   نوفر خدمة تصنيع المراتب بمقاسات خاصة حسب طلبك. اتصل بنا لمزيد من التفاصيل!
                 </p>
-                <Button className="bg-badawi-blue hover:bg-badawi-lightBlue">
-                  اتصل بنا
+                <Button 
+                  onClick={handleWhatsAppClick}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  تواصل معنا عبر واتساب
                 </Button>
               </div>
             </div>
