@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -61,57 +63,63 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold">تسجيل دخول المدير</h2>
-          <p className="mt-2 text-gray-600">أدخل بياناتك للوصول إلى لوحة التحكم</p>
-        </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium">
-                اسم المستخدم
-              </label>
-              <Input
-                id="username"
-                name="username"
-                type="text"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="mt-1"
-                placeholder="أدخل اسم المستخدم"
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium">
-                كلمة المرور
-              </label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1"
-                placeholder="أدخل كلمة المرور"
-              />
-            </div>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
+      <div className="flex-1 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold">تسجيل دخول المدير</h2>
+            <p className="mt-2 text-gray-600">أدخل بياناتك للوصول إلى لوحة التحكم</p>
           </div>
+          
+          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium">
+                  اسم المستخدم
+                </label>
+                <Input
+                  id="username"
+                  name="username"
+                  type="text"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="mt-1"
+                  placeholder="أدخل اسم المستخدم"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium">
+                  كلمة المرور
+                </label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1"
+                  placeholder="أدخل كلمة المرور"
+                />
+              </div>
+            </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-badawi-blue hover:bg-badawi-lightBlue"
-            disabled={isLoading}
-          >
-            {isLoading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              className="w-full bg-badawi-blue hover:bg-badawi-lightBlue"
+              disabled={isLoading}
+            >
+              {isLoading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
+            </Button>
+          </form>
+        </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
