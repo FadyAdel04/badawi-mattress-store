@@ -1,11 +1,25 @@
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is admin
+    const adminAuth = localStorage.getItem("adminAuthenticated");
+    setIsAdmin(adminAuth === "true");
+  }, []);
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -25,10 +39,34 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center space-x-4 space-x-reverse">
-            <Button variant="ghost" size="icon" className="text-gray-700 hover:text-badawi-blue">
-              <ShoppingCart className="h-6 w-6" />
-              <span className="sr-only">سلة التسوق</span>
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-gray-700 hover:text-badawi-blue">
+                  <User className="h-6 w-6" />
+                  <span className="sr-only">لوحة الإدارة</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {isAdmin ? (
+                  <>
+                    <DropdownMenuItem onClick={() => navigate("/admin")}>
+                      لوحة الإدارة
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => {
+                      localStorage.removeItem("adminAuthenticated");
+                      setIsAdmin(false);
+                      navigate("/");
+                    }}>
+                      تسجيل الخروج
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <DropdownMenuItem onClick={() => navigate("/admin/login")}>
+                    تسجيل الدخول كمدير
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             <div className="md:hidden">
               <Button

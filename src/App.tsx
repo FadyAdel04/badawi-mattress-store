@@ -13,6 +13,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductForm from "./pages/ProductForm";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/about" element={<AboutPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route 
             path="/admin" 

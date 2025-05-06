@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   category: string;
   price: number;

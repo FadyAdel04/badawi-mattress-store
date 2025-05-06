@@ -68,6 +68,12 @@ const ProductDetail = () => {
 
       if (imagesError) throw imagesError;
 
+      // Map the image_url to url for compatibility with our interface
+      const mappedImages = imagesData.map((img: any) => ({
+        url: img.image_url,
+        is_primary: img.is_primary
+      }));
+
       const productDetails: ProductDetails = {
         id: productData.id,
         name: productData.name,
@@ -77,7 +83,7 @@ const ProductDetail = () => {
         features: productData.features,
         sizes: sizesData.map((s: any) => s.size),
         specs: specsData,
-        images: imagesData
+        images: mappedImages
       };
 
       setProduct(productDetails);
@@ -129,16 +135,16 @@ const ProductDetail = () => {
             <div className="mb-8 lg:mb-0">
               <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
                 <img
-                  src={product.images && product.images.length > 0 
+                  src={product?.images && product.images.length > 0 
                     ? product.images.find(img => img.is_primary)?.url || product.images[0].url
                     : "https://images.unsplash.com/photo-1631049552240-59c37f38802b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"}
-                  alt={product.name}
+                  alt={product?.name || "Product image"}
                   className="w-full h-full object-center object-cover"
                 />
               </div>
               
               {/* Additional Images */}
-              {product.images && product.images.length > 1 && (
+              {product?.images && product.images.length > 1 && (
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   {product.images.slice(0, 4).map((image, index) => (
                     <div key={index} className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
@@ -157,20 +163,20 @@ const ProductDetail = () => {
             <div>
               <div className="mb-2">
                 <span className="inline-block bg-badawi-beige text-badawi-blue rounded-full px-3 py-1 text-sm font-semibold">
-                  {product.category}
+                  {product?.category}
                 </span>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
-              <p className="text-2xl text-badawi-blue font-bold mb-6">{product.price} جنيه</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">{product?.name}</h1>
+              <p className="text-2xl text-badawi-blue font-bold mb-6">{product?.price} جنيه</p>
               
-              {product.description && (
+              {product?.description && (
                 <p className="text-gray-700 mb-6">{product.description}</p>
               )}
               
               <div className="mb-6">
                 <label className="block text-gray-700 font-medium mb-2">المقاسات المتاحة</label>
                 <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((size) => (
+                  {product?.sizes.map((size) => (
                     <div
                       key={size}
                       className={`px-4 py-2 border rounded cursor-pointer ${
@@ -208,7 +214,7 @@ const ProductDetail = () => {
               <TabsContent value="features">
                 <div className="bg-white p-6 rounded-lg">
                   <h3 className="text-xl font-bold mb-4">مميزات المنتج</h3>
-                  {product.features && product.features.length > 0 ? (
+                  {product?.features && product.features.length > 0 ? (
                     <ul className="list-disc list-inside space-y-2">
                       {product.features.map((feature, index) => (
                         <li key={index}>{feature}</li>
@@ -223,7 +229,7 @@ const ProductDetail = () => {
               <TabsContent value="specifications">
                 <div className="bg-white p-6 rounded-lg">
                   <h3 className="text-xl font-bold mb-4">المواصفات</h3>
-                  {product.specs && product.specs.length > 0 ? (
+                  {product?.specs && product.specs.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {product.specs.map((spec, index) => (
                         <div key={index} className="flex justify-between py-2 border-b">

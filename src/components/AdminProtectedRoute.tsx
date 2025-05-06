@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 interface AdminProtectedRouteProps {
   children: JSX.Element;
@@ -8,12 +8,13 @@ interface AdminProtectedRouteProps {
 
 const AdminProtectedRoute = ({ children }: AdminProtectedRouteProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     // Check if admin is authenticated
     const adminAuth = localStorage.getItem("adminAuthenticated");
     setIsAuthenticated(adminAuth === "true");
-  }, []);
+  }, [location]);
 
   if (isAuthenticated === null) {
     // Still checking authentication status
