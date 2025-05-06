@@ -1,19 +1,10 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 const Hero = () => {
-  return (
-    <div className="relative bg-badawi-beige overflow-hidden">
+  return <div className="relative bg-badawi-beige overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="relative z-10 pb-8 bg-badawi-beige sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-          <svg
-            className="hidden lg:block absolute left-0 inset-y-0 h-full w-48 text-badawi-beige transform -translate-x-1/2"
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
+          <svg className="hidden lg:block absolute left-0 inset-y-0 h-full w-48 text-badawi-beige transform -translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
 
@@ -47,14 +38,8 @@ const Hero = () => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
-        <img
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-          alt="صورة لمرتبة طبية"
-        />
+        <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" alt="صورة لمرتبة طبية" src="/lovable-uploads/b6b0cf3c-090b-42cb-b707-696e3529fd1a.jpg" />
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;
