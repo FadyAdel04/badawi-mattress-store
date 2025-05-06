@@ -9,7 +9,147 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      administrators: {
+        Row: {
+          created_at: string | null
+          id: string
+          password_hash: string
+          username: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          password_hash: string
+          username: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          password_hash?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      product_images: {
+        Row: {
+          created_at: string | null
+          id: string
+          image_url: string
+          is_primary: boolean | null
+          product_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          image_url: string
+          is_primary?: boolean | null
+          product_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          is_primary?: boolean | null
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_sizes: {
+        Row: {
+          id: string
+          product_id: string
+          size: string
+        }
+        Insert: {
+          id?: string
+          product_id: string
+          size: string
+        }
+        Update: {
+          id?: string
+          product_id?: string
+          size?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_sizes_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_specifications: {
+        Row: {
+          id: string
+          name: string
+          product_id: string
+          value: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          product_id: string
+          value: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          product_id?: string
+          value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_specifications_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          features: string[] | null
+          id: string
+          name: string
+          price: number
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          name: string
+          price: number
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          name?: string
+          price?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

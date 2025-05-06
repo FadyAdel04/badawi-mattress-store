@@ -1,8 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 export interface Product {
   id: number;
@@ -43,11 +41,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p className="text-gray-600 text-sm">المقاسات المتاحة: {product.sizes.join(', ')}</p>
         </div>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full bg-badawi-blue hover:bg-badawi-lightBlue">
-          <ShoppingCart className="ml-2 h-5 w-5" /> أضف إلى السلة
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
