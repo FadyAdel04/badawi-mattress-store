@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">معرض البدوي للمراتب</h3>
+            <h3 className="text-xl font-bold mb-4">معرض ال بدوي للمراتب</h3>
             <p className="mb-4">
               متخصصون في المراتب الطبية والمفروشات منذ عام 2015
             </p>
@@ -73,7 +73,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="/products?category=medical"
+                  href="/products"
                   className="hover:text-badawi-gold transition-colors"
                 >
                   مراتب طبية
@@ -81,7 +81,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/products?category=spring"
+                  href="/products"
                   className="hover:text-badawi-gold transition-colors"
                 >
                   مراتب سوست
@@ -89,7 +89,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/products?category=furniture"
+                  href="/products"
                   className="hover:text-badawi-gold transition-colors"
                 >
                   مفروشات
@@ -97,7 +97,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/products?category=custom"
+                  href="/products"
                   className="hover:text-badawi-gold transition-colors"
                 >
                   مقاسات خاصة
